@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ImplementValues: MonoBehaviour
+{
+    public float force;
+    public Rigidbody rb;
+    public float floatGravity;
+    public float floatAngularDrag;
+    public float floatDrag;
+    // Start is called before the first frame update
+    void Start()
+    {
+        force = GameController.floatBouncy;
+        floatGravity = GameController.floatGravity;
+        floatAngularDrag = GameController.floatAngularDrag;
+        floatDrag = GameController.floatDrag;
+    }
+    void OnCollisionEnter(Collision c)
+    {
+            // Calculate Angle Between the collision point and the player
+            Vector3 dir = c.contacts[0].point - transform.position;
+            // We then get the opposite (-Vector3) and normalize it
+            dir = -dir.normalized;
+            // And finally we add force in the direction of dir and multiply it by force. 
+            // This will push back the player
+            GetComponent<Rigidbody>().AddForce(dir * force);
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        force = GameController.floatBouncy;
+        floatGravity = GameController.floatGravity;
+        floatAngularDrag = GameController.floatAngularDrag;
+        floatDrag = GameController.floatDrag;
+        rb.angularDrag = floatAngularDrag;
+        rb.drag = floatDrag;
+        rb.AddForce(0, floatGravity, 0, ForceMode.Force);
+    }
+}
