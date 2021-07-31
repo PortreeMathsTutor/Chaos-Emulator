@@ -1,0 +1,70 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GameController : MonoBehaviour
+{
+    public Rigidbody sphere1;
+    public Rigidbody sphere2;
+    public InputField input;
+   public InputField input1;
+    public InputField input2;
+    public InputField input3;
+    public InputField input4;
+    private string stringBouncy="25";
+    private string stringGravity;
+    public string stringSidewaysForce;
+    public string stringAngularDrag;
+    public string stringDrag;
+    public static float floatBouncy= 100;
+    public static float floatGravity=0f;
+    public static float floatSidewaysForce=0f;
+    public static float floatAngularDrag=0f;
+    public static float floatDrag=0f;
+  
+   public TrailRenderer tr1;
+    public TrailRenderer tr2;
+
+    public void GetInput(string stringBouncy)
+    {
+        Debug.Log("You Entered bouncy" + stringBouncy);
+        // input.text = "";
+        floatBouncy=  float.Parse(stringBouncy) * 100;
+    }
+    public void GetInput1(string stringGravity)
+    {
+        Debug.Log("You Entered gravity" + stringGravity);
+        // input.text = "";
+        floatGravity = float.Parse(stringGravity);
+    }
+    public void GetInput2(string stringSidewaysForce)
+    {
+        Debug.Log("You Entered bouncy" + stringSidewaysForce);
+        // input.text = "";
+        floatSidewaysForce = float.Parse(stringSidewaysForce);
+       sphere1.AddForce(floatSidewaysForce, 10, 0, ForceMode.VelocityChange);
+       sphere2.AddForce(floatSidewaysForce, 10, 0, ForceMode.VelocityChange);
+    }
+    public void GetInput3(string stringAgularDrag)
+    {
+        Debug.Log("You Entered AgularDrag" + stringAgularDrag);
+        // input.text = "";
+        floatAngularDrag = float.Parse(stringAgularDrag);
+    }
+    public void GetInput4(string stringDrag)
+    {
+        Debug.Log("You EnteredDrag" + stringBouncy);
+        // input.text = "";
+        floatDrag = float.Parse(stringDrag);
+    }
+    public void ResetSpheres()
+    {
+        sphere1.transform.position = new Vector3(.5f,5.2f,0);
+        sphere2.transform.position = new Vector3(.4f, 5.2f, 0);
+        sphere1.velocity = new Vector3(floatSidewaysForce, 0, 0);
+        sphere2.velocity = new Vector3(floatSidewaysForce, 0, 0);
+        tr1.Clear();
+        tr2.Clear();
+    }
+}
