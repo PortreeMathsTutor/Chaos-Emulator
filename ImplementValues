@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ImplementValues: MonoBehaviour
 {
-    public float force;
+     public float force=100;
     public Rigidbody rb;
-    public float floatGravity;
-    public float floatAngularDrag;
-    public float floatDrag;
+    public float floatGravity=-9.8f;
+    public float floatAngularDrag=100;
+    public float floatDrag=2;
     // Start is called before the first frame update
     void Start()
     {
-        force = GameController.floatBouncy;
-        floatGravity = GameController.floatGravity;
-        floatAngularDrag = GameController.floatAngularDrag;
-        floatDrag = GameController.floatDrag;
+        force = 4000;
+        floatGravity = 9.8f;
+        floatAngularDrag = 100;
+        floatDrag = 2;
     }
     void OnCollisionEnter(Collision c)
     {
@@ -31,6 +31,7 @@ public class ImplementValues: MonoBehaviour
     void Update()
     {
         force = GameController.floatBouncy;
+        Debug.Log("force = " + force);
         floatGravity = GameController.floatGravity;
         floatAngularDrag = GameController.floatAngularDrag;
         floatDrag = GameController.floatDrag;
@@ -39,3 +40,4 @@ public class ImplementValues: MonoBehaviour
         rb.AddForce(0, floatGravity, 0, ForceMode.Force);
     }
 }
+
