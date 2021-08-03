@@ -12,20 +12,29 @@ public class GameController : MonoBehaviour
     public InputField input2;
     public InputField input3;
     public InputField input4;
-    private string stringBouncy="25";
-    private string stringGravity;
-    public string stringSidewaysForce;
-    public string stringAngularDrag;
-    public string stringDrag;
-    public static float floatBouncy= 100;
-    public static float floatGravity=0f;
-    public static float floatSidewaysForce=0f;
-    public static float floatAngularDrag=0f;
-    public static float floatDrag=0f;
+    private string stringBouncy="100";
+    private string stringGravity="-9.8f";
+    public string stringSidewaysForce="8";
+    public string stringAngularDrag="100";
+    public string stringDrag="2";
+    public static float floatBouncy;
+    public static float floatGravity;
+    public static float floatSidewaysForce;
+    public static float floatAngularDrag;
+    public static float floatDrag;
   
    public TrailRenderer tr1;
     public TrailRenderer tr2;
-
+    private void Start()
+    {
+        sphere1.AddForce(8, 8, 0, ForceMode.VelocityChange);
+        sphere2.AddForce(8, 8, 0, ForceMode.VelocityChange);
+        floatBouncy = 4000;
+    floatGravity = -9.8f;
+   floatSidewaysForce =8f;
+floatAngularDrag =100f;
+  floatDrag = 2f;
+}
     public void GetInput(string stringBouncy)
     {
         Debug.Log("You Entered bouncy" + stringBouncy);
@@ -60,11 +69,12 @@ public class GameController : MonoBehaviour
     }
     public void ResetSpheres()
     {
-        sphere1.transform.position = new Vector3(.5f,5.2f,0);
-        sphere2.transform.position = new Vector3(.4f, 5.2f, 0);
+        sphere1.transform.position = new Vector3(0,0,0);
+        sphere2.transform.position = new Vector3(0.0001f, 0.0001f, 0.0001f);
         sphere1.velocity = new Vector3(floatSidewaysForce, 0, 0);
         sphere2.velocity = new Vector3(floatSidewaysForce, 0, 0);
         tr1.Clear();
         tr2.Clear();
     }
 }
+
